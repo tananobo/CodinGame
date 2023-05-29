@@ -63,22 +63,25 @@ while True:
         cells[i].opp_ants = opp_ants
 
     # decide the cell that has contain maximum crystal
-    maxCristalNum = -1
-    maxCristalCell = -1
-    for i in range(number_of_cells):
-        if cells[i].resources > maxCristalNum:
-            maxCristalNum = cells[i].resources
-            maxCristalCell = i
+    # maxCristalNum = -1
+    # maxCristalCell = -1
+    # for i in range(number_of_cells):
+    #    if cells[i].resources > maxCristalNum:
+    #        maxCristalNum = cells[i].resources
+    #        maxCristalCell = i
 
     # find the cell that ants exist
-    antsCell = -1
-    for i in range(number_of_cells):
-        if cells[i].my_ants > 0:
-            antsCell = i
-            break
+    # antsCell = -1
+    # for i in range(number_of_cells):
+    #    if cells[i].my_ants > 0:
+    #        antsCell = i
+    #        break
 
     # WAIT | LINE <sourceIdx> <targetIdx> <strength> | BEACON <cellIdx> <strength> | MESSAGE <text>
-    actions = ["LINE {} {} {}".format(my_bases[0], maxCristalCell, 1)]
+    actions = []
+    for i in range(number_of_cells):
+        if cells[i].resources > 0:
+            actions.append("LINE {} {} {}".format(my_bases[0], i, cells[i].resources))
 
     # TODO: choose actions to perform and push them into actions
     # To debug: print("Debug messages...", file=sys.stderr, flush=True)
